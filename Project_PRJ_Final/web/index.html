@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chia Sẻ Trang Web - Trang Chủ</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                margin: 0;
+                background-color: #f4f4f4;
+            }
+            .banner {   /*-----------------*/
+                background: linear-gradient(to bottom, #8B5E3C, #5A3A21);
+                color: white;
+                padding: 20px;
+                font-size: 24px;
+                font-weight: bold;
+                margin-top: 34px;
+            }
+
+
+            .container {    /*-----------------*/
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+                margin-top: 60px; /* Tránh bị header che mất nội dung */
+
+            }
+            .main-content {
+                width: 100%;
+                max-width: 800px;
+            }
+
+
+/* ô to chứa 3 ô sản phẩm ------------------------------------------------------*/
+            .content1, .content2, .content3, .content4 {
+                background: white;
+                padding: 10px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+                height: 450px;
+                justify-content: center;
+            }
+
+       
+/*1 ô sản phẩm------------------------------------------------------------------- */
+            .featured-section {
+                display: flex;
+                gap: 25px; /* Khoảng cách giữa các ô */
+                justify-content: center;
+            }
+
+            .featured-item {
+                display: grid;
+                grid-template-rows: 4fr 0.5fr 0.5fr 3fr; /* Chỉnh lại tỉ lệ hàng */
+                gap: 5px; /* Khoảng cách giữa các ô */
+                width: 200px; /* Giảm chiều rộng để làm gầy hơn */
+                height: 360px; /* Giữ nguyên chiều cao */
+                padding: 8px;
+                border-radius: 10px;
+                text-align: center;
+            }
+
+            /* Ảnh vuông, nhỏ lại nhưng không méo */
+            .img {
+                width: 100%; /* Đảm bảo phần tử .img chiếm toàn bộ chiều rộng của ô cha (featured-item) */
+                height: 100%; /* Chiều cao của .img cũng chiếm toàn bộ không gian được cấp phát */
+                overflow: hidden; /* Ẩn bất kỳ phần nào của ảnh vượt ra ngoài kích thước quy định */
+                display: flex; /* Dùng Flexbox để căn chỉnh nội dung bên trong */
+                align-items: center; /* Căn giữa ảnh theo chiều dọc */
+                justify-content: center; /* Căn giữa ảnh theo chiều ngang */
+            }
+
+            .img img {
+                width: 100%; /* Thu nhỏ ảnh xuống 90% so với phần tử cha để không quá to */
+                height: auto; /* Chiều cao tự động thay đổi theo tỉ lệ của ảnh */
+                aspect-ratio: 1 / 1; /* Đảm bảo ảnh luôn có tỉ lệ 1:1 (hình vuông) */
+                object-fit: cover; /* Cắt ảnh để lấp đầy khung hình mà không bị méo */
+
+            }
+            /* Định dạng phần nội dung */
+            .name, .text1, .text2 {
+                display: flex;
+                justify-content: left; /* Căn trái nội dung */
+                width: 100%; /* Đảm bảo các phần tử có cùng chiều rộng */
+                height: 25px; /* Đặt chiều cao cố định để đảm bảo đồng đều */
+                font-size: 13px; /* Giảm font chữ để cân đối */
+                padding: 0px; /* Tạo khoảng cách bên trái */
+                text-align: left; /* Căn lề trái nội dung */
+            }
+
+            .name {
+                font-weight: bold;
+                font-size: 16px;
+            }
+
+            .text1 {
+                height: 25px; /* Chiều cao cố định */
+                font-size: 13px;
+                padding: 0px;
+            }
+
+            .text2 {
+                height: 100px; /* Gấp đôi chiều cao .text1 */
+                text-overflow: ellipsis;
+                font-size: 13px;
+                padding: 0px;
+                text-align: justify;
+            }
+
+
+            /* form chữ */
+            .featured-item b{
+                color: #8B5E3C;
+                display: flex;
+            }
+            .featured-item small{
+                color: #8B5E3C;
+                display: block;
+                word-wrap: break-word;
+                margin: 10px 0px 10px 0px;
+
+            }
+
+/*CSS PHẦN BÊN PHẢI-------------------------------------------------------------*/
+            
+                .sidebar {
+                padding: 10px;
+                margin-left: 20px;
+                .search-container {
+                    position: relative;
+                    width: max-content;
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 45px;
+                    width: 282px;
+                }
+                .search-container input {
+                    width: 100%;
+                    padding: 12px 45px 12px 15px;
+                    border: 2px solid #ccc;
+                    border-radius: 25px;
+                    font-size: 16px;
+                    outline: none;
+                    transition: 0.3s ease-in-out;
+                    background-color: #fff;
+                }
+                .search-container button {
+                    width: 34px;
+                    position: absolute;
+                    right: 12px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    color: #888;
+                    font-size: 18px;
+                    display: flex;
+                    align-items: end;
+                    justify-content: end;
+                }
+
+
+                .search-container button:focus {
+                    outline: none;
+                    box-shadow: none;
+                }
+
+
+                .search-container input:focus {
+                    border-color: #007bff;
+                    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+
+                }
+
+                .search-container button:hover {
+                    color: #007bff;
+                }
+
+                .sidebar-section h3 {
+                    background: #8B5E3C;
+                    color: white;
+
+                    margin: 10px;
+
+                    border-radius: 10px;
+                    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+                }
+            }
+            .sidebar-section {
+                padding: 5px;
+                margin: 0 0 10px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                background: white;
+            }
+
+            .sidebar-section button {
+                width: 90%;
+                margin: 5px;
+                margin-bottom: 10px;
+                padding: 8px;
+                background: white;
+                border: 1px solid #000;
+            }
+            .main-content h3 {
+                background: #8B5E3C;
+                color: white;
+                border-radius: 5px;
+            }
+            .sidebar-item {
+
+                width: 100%;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                background: white;
+            }
+
+/*PHÂN TRANG CHO 1 MỤC-----------------------------------------------------------*/
+            .pagination {
+                display: flex;
+                justify-content: center;
+                margin-top: -10px; /* Tạo khoảng cách với .featured-section */
+            }
+            .dot {
+                width: 8px;
+                height: 8px;
+                border: 2px solid #8B5E3C; /* Viền màu nâu */
+                background-color: transparent; /* Nền trong suốt */
+                border-radius: 50%;
+                margin: 0 15px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .dot.active {
+                background-color: #8B5E3C; /* Màu nền khi được chọn */
+            }
+            .page {
+                display: none;
+                justify-content: space-between; /* Căn chỉnh layout */
+                gap: 30px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        
+<!--Thanh điều hướng------------------------------------------------------------>
+        <div id="header"></div>
+        <script>
+            fetch("header.jsp")
+                    .then(response => response.text())
+                    .then(data => document.getElementById("header").innerHTML = data)
+                    .catch(error => console.error("Lỗi khi tải header:", error));
+        </script>
+
+<!--Thanh nền trên banner -------------------------------------------------------------->
+        <div class="banner">CHIA SẺ TRANG WEB</div>
+
+
+        <div class="container">
+<!--PHẦN BÊN TRÁI----------------------------------------------------------------------->
+            <div class="main-content">
+<!--PHẦN SẢN PHẨM WINDOW---------------------------------------------------------->
+                <div class="content1">
+                    <h3>WINDOW</h3>
+                    <div class="featured-section">
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">
+                                    <img src="image/Screenshot 2025-03-01 195744.png"/>
+                                </div>
+                                <div class="name"><b>Diệt Virus</b></div>
+                                <div class="text1"><small>22/12/2022</small></div>
+                                <div class="text2"><small>
+                                        InDesign là phần mềm thiết kế hoàn hảo được dùng để thiết kế các ấn phẩm nhiều trang như sách, báo, tạp chí, tờ rơi, brochure, catalogue,...
+                                    </small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">
+                                    <img src="image/Screenshot 2025-03-01 195744.png"/>
+                                </div>
+                                <div class="name"><b>Diệt Virus</b></div>
+                                <div class="text1"><small>22/12/2022</small></div>
+                                <div class="text2"><small>
+                                        InDesign là phần mềm thiết kế hoàn hảo được dùng để thiết kế các ấn phẩm nhiều trang như sách, báo, tạp chí, tờ rơi, brochure, catalogue,...
+                                    </small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">
+                                    <img src="image/Screenshot 2025-03-01 195744.png"/>
+                                </div>
+                                <div class="name"><b>Diệt Virus</b></div>
+                                <div class="text1"><small>22/12/2022</small></div>
+                                <div class="text2"><small>
+                                        InDesign là phần mềm thiết kế hoàn hảo được dùng để thiết kế các ấn phẩm nhiều trang như sách, báo, tạp chí, tờ rơi, brochure, catalogue,...
+                                    </small></div>
+                            </div>
+                        </div>
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phân trang -->
+                    <div class="pagination">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+
+
+
+<!--PHẦN SẢN PHẨM MAC---------------------------------------------------------->
+                <div class="content2">
+                    <h3>MAC</h3>
+                    <div class="featured-section">
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">
+                                    <img src="image/Screenshot 2025-03-01 195744.png"/>
+                                </div>
+                                <div class="name"><b>Diệt Virus</b></div>
+                                <div class="text1"><small>22/12/2022</small></div>
+                                <div class="text2"><small>
+                                        InDesign là phần mềm thiết kế hoàn hảo được dùng để thiết kế các ấn phẩm nhiều trang như sách, báo, tạp chí, tờ rơi, brochure, catalogue,...
+                                    </small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">
+                                    <img src="image/Screenshot 2025-03-01 195744.png"/>
+                                </div>
+                                <div class="name"><b>Diệt Virus</b></div>
+                                <div class="text1"><small>22/12/2022</small></div>
+                                <div class="text2"><small>
+                                        InDesign là phần mềm thiết kế hoàn hảo được dùng để thiết kế các ấn phẩm nhiều trang như sách, báo, tạp chí, tờ rơi, brochure, catalogue,...
+                                    </small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">
+                                    <img src="image/Screenshot 2025-03-01 195744.png"/>
+                                </div>
+                                <div class="name"><b>Diệt Virus</b></div>
+                                <div class="text1"><small>22/12/2022</small></div>
+                                <div class="text2"><small>
+                                        InDesign là phần mềm thiết kế hoàn hảo được dùng để thiết kế các ấn phẩm nhiều trang như sách, báo, tạp chí, tờ rơi, brochure, catalogue,...
+                                    </small></div>
+                            </div>
+                        </div>
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phân trang -->
+                    <div class="pagination">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+
+<!--PHẦN SẢN PHẨM IOS--------------------------------------------------------->
+                <div class="content3">
+                    <h3>IOS</h3>
+                    <div class="featured-section">
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">
+                                    <img src="image/Screenshot 2025-03-01 195744.png"/>
+                                </div>
+                                <div class="name"><b>Diệt Virus</b></div>
+                                <div class="text1"><small>22/12/2022</small></div>
+                                <div class="text2"><small>
+                                        InDesign là phần mềm thiết kế hoàn hảo được dùng để thiết kế các ấn phẩm nhiều trang như sách, báo, tạp chí, tờ rơi, brochure, catalogue,...
+                                    </small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">
+                                    <img src="image/Screenshot 2025-03-01 195744.png"/>
+                                </div>
+                                <div class="name"><b>Diệt Virus</b></div>
+                                <div class="text1"><small>22/12/2022</small></div>
+                                <div class="text2"><small>
+                                        InDesign là phần mềm thiết kế hoàn hảo được dùng để thiết kế các ấn phẩm nhiều trang như sách, báo, tạp chí, tờ rơi, brochure, catalogue,...
+                                    </small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">
+                                    <img src="image/Screenshot 2025-03-01 195744.png"/>
+                                </div>
+                                <div class="name"><b>Diệt Virus</b></div>
+                                <div class="text1"><small>22/12/2022</small></div>
+                                <div class="text2"><small>
+                                        InDesign là phần mềm thiết kế hoàn hảo được dùng để thiết kế các ấn phẩm nhiều trang như sách, báo, tạp chí, tờ rơi, brochure, catalogue,...
+                                    </small></div>
+                            </div>
+                        </div>
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phân trang -->
+                    <div class="pagination">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+
+
+<!--PHẦN SẢN PHẨM ANDROID---------------------------------------------------------->
+                <div class="content4">
+                    <h3>ANDROID</h3>
+                    <div class="featured-section">
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">
+                                    <img src="image/Screenshot 2025-03-01 195744.png"/>
+                                </div>
+                                <div class="name"><b>Diệt Virus</b></div>
+                                <div class="text1"><small>22/12/2022</small></div>
+                                <div class="text2"><small>
+                                        InDesign là phần mềm thiết kế hoàn hảo được dùng để thiết kế các ấn phẩm nhiều trang như sách, báo, tạp chí, tờ rơi, brochure, catalogue,...
+                                    </small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">
+                                    <img src="image/Screenshot 2025-03-01 195744.png"/>
+                                </div>
+                                <div class="name"><b>Diệt Virus</b></div>
+                                <div class="text1"><small>22/12/2022</small></div>
+                                <div class="text2"><small>
+                                        InDesign là phần mềm thiết kế hoàn hảo được dùng để thiết kế các ấn phẩm nhiều trang như sách, báo, tạp chí, tờ rơi, brochure, catalogue,...
+                                    </small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">
+                                    <img src="image/Screenshot 2025-03-01 195744.png"/>
+                                </div>
+                                <div class="name"><b>Diệt Virus</b></div>
+                                <div class="text1"><small>22/12/2022</small></div>
+                                <div class="text2"><small>
+                                        InDesign là phần mềm thiết kế hoàn hảo được dùng để thiết kế các ấn phẩm nhiều trang như sách, báo, tạp chí, tờ rơi, brochure, catalogue,...
+                                    </small></div>
+                            </div>
+                        </div>
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+
+                        <!-- Các trang được nhóm thành div.page -->
+                        <div class="page">
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                            <div class="featured-item">
+                                <div class="img">img</div>
+                                <div class="name"><b>AAA</b></div>
+                                <div class="text1"><small>AAA</small></div>
+                                <div class="text2"><small>AAA</small></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phân trang -->
+                    <div class="pagination">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+
+<!------------------------------------------------------------------------------------>
+            </div>     
+
+<!-- Đặt script ĐỂ PHÂN TRANG------------------------------------------------------>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const dots = document.querySelectorAll(".dot");
+
+                    dots.forEach((dot) => {
+                        dot.addEventListener("click", function () {
+                            // Xóa class "active" khỏi tất cả các dots
+                            dots.forEach(d => d.classList.remove("active"));
+                            // Thêm class "active" vào dot được bấm
+                            this.classList.add("active");
+                        });
+                    });
+                });
+
+
+
+                document.addEventListener("DOMContentLoaded", function () {
+// Hàm xử lý phân trang cho từng phần (WINDOW, MAC)
+                    function setupPagination(contentClass) {
+                        const container = document.querySelector(`.${contentClass}`);
+                        if (!container)
+                            return;
+
+                        const pages = container.querySelectorAll(".page");
+                        const dots = container.querySelectorAll(".dot");
+
+                        let currentIndex = 0; // Trang đầu tiên
+
+                        function showPage(index) {
+                            pages.forEach((page, i) => {
+                                page.style.display = i === index ? "flex" : "none";
+                            });
+                            dots.forEach((dot, i) => {
+                                dot.classList.toggle("active", i === index);
+                            });
+                        }
+
+                        dots.forEach((dot, index) => {
+                            dot.addEventListener("click", function () {
+                                currentIndex = index;
+                                showPage(currentIndex);
+                            });
+                        });
+
+                        // Hiển thị trang đầu tiên khi tải trang
+                        showPage(currentIndex);
+                    }
+
+// Gọi hàm phân trang cho từng phần
+                    setupPagination("content1"); // Phần WINDOW
+                    setupPagination("content2"); // Phần MAC (cần đổi class)
+                    setupPagination("content3");
+                    setupPagination("content4");
+                });
+            </script>
+
+
+<!--PHẦN BÊN PHẢI --------------------------------------------------------------------->
+            <div class="sidebar">
+
+                <div class="sreachbox">
+
+                    <div class="search-container">
+                        <input type="text" placeholder="Nhập từ khóa...">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+
+                <!-- Add Font Awesome for icons -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+                <div class="sidebar-section">
+                    <h3>Nổi bật</h3>
+                    <button>Nổi bật 1</button>
+                    <button>Nổi bật 2</button>
+                    <button>Nổi bật 3</button>
+                </div>
+                <div class="sidebar-section">
+                    <h3>App mới</h3>
+                    <button>App 1</button>
+                    <button>App 2</button>
+                    <button>App 3</button>
+                </div>
+                <div class="sidebar-section">
+                    <h3>Tải nhiều nhất</h3>
+                    <button>App 1</button>
+                    <button>App 2</button>
+                    <button>App 3</button>
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+
+
+    <footer style="background: #5A3A21;
+            color: white;
+            padding: 20px;
+            margin-top: 20px;">
+        &copy; 2025 Chia Sẻ Trang Web. All rights reserved.
+    </footer>
+
+</html>

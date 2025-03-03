@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Đăng Ký - Chia Sẻ Trang Web</title>
+        <style>
+            /* Reset CSS */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+            
+              body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                margin: 0;
+                background-color: #f4f4f4;
+            }
+            
+
+         
+
+            /* Title */
+            .title {
+                background: linear-gradient(to bottom, #80533d, #5e3a28);
+                color: white;
+                text-align: center;
+                padding: 15px 0;
+                font-size: 28px;
+                font-weight: bold;
+                margin-top: 34px;
+            }
+
+            /* Registration Form */
+         .form-container {
+    flex: 1; /* Chiếm phần còn lại của trang */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+
+            .form-box {
+                background: white;
+                padding: 30px;
+                border-radius: 10px;
+                width: 450px;
+                border: 1px solid #80533d;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            }
+            .form-box {
+    max-width: 450px; /* Đặt chiều rộng tối đa */
+    width: 90%; /* Co giãn theo kích thước màn hình nhưng không quá to */
+    min-width: 320px; /* Tránh form quá nhỏ trên màn hình bé */
+}
+
+            .form-box h2 {
+                text-align: center;
+                color: #804d38;
+                margin-bottom: 15px;
+            }
+
+           
+
+            .form-box input, .form-box select {
+                width: 100%;
+                padding: 8px;
+                margin-top: 5px;
+                border: 1px solid #804d38;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+
+            .form-box select {
+                cursor: pointer;
+            }
+
+            .submit-btn {
+                width: 100%;
+                padding: 10px;
+                margin-top: 15px;
+                background: #804d38;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+            .submit-btn:hover {
+                background: #663726;
+            }
+            
+            
+            html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    min-height: 100vh; /* Đảm bảo nội dung luôn đủ chiều cao */
+        flex-direction: column;
+
+}
+
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Đảm bảo form luôn nằm giữa màn hình */
+    padding: 10px; /* Tránh bị dính sát màn hình */
+}
+
+.form-box input, .form-box select, .form-box button {
+    width: 100%; /* Đảm bảo input không bị co lại */
+    max-width: 400px; /* Giới hạn chiều rộng */
+}
+
+footer {
+    width: 100%;
+    background: #5A3A21;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+}       
+
+ .form-box label {
+                display: block;
+                margin-top: 10px;
+                font-weight: bold;
+                color: #804d38;
+                text-align: left;
+            }
+
+        </style>
+    </head>
+    <body>
+
+      <div id="header"></div>
+    <script>
+        fetch("header.jsp")
+            .then(response => response.text())
+            .then(data => document.getElementById("header").innerHTML = data)
+            .catch(error => console.error("Lỗi khi tải header:", error));
+    </script>
+
+        <!-- Title -->
+        <div class="title">
+            CHIA SẺ TRANG WEB
+        </div>
+
+        <!-- Registration Form -->
+        <div class="form-container">
+            <div class="form-box">
+                <h2>Đăng ký</h2>
+
+                <label for="username">Tài khoản</label>
+                <input type="text" id="username" name="username">
+
+                <label for="password">Mật khẩu</label>
+                <input type="password" id="password" name="password">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+
+                <label for="security-question">Bảo mật cấp 2*</label>
+                <select id="security-question" name="security-question">
+                    <option value="">Vui lòng chọn câu hỏi</option>
+                    <option value="pet">Tên thú cưng của bạn?</option>
+                    <option value="school">Trường tiểu học của bạn?</option>
+                    <option value="city">Thành phố bạn sinh ra?</option>
+                </select>
+
+                <input type="text" id="security-answer" name="security-answer" placeholder="Nhập câu trả lời">
+
+                <button class="submit-btn">Đăng ký</button>
+            </div>
+        </div>
+ <footer>
+        &copy; 2025 Chia Sẻ Trang Web. All rights reserved.
+    </footer>
+    </body>
+   
+</html>
+

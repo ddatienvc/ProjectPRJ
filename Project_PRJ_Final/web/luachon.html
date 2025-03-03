@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Đăng nhập/đăng ký</title>
+        <style>
+            /* Reset CSS */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+           body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    background-color: #f4f4f4; /* Đổi màu nền */
+}
+            .banner {   /*-----------------*/
+                background: linear-gradient(to bottom, #8B5E3C, #5A3A21);
+                color: white;
+                padding: 20px;
+                font-size: 24px;
+                font-weight: bold;
+                margin-top: 34px;
+            }
+
+
+
+
+
+            /* Registration Form */
+            .form-container {
+                background: #f4f4f4;
+                padding: 40px;
+                width: 100%;
+                height: 100vh;
+                position: relative; /* Để .form-box có thể căn giữa */
+            }
+
+            .form-box {
+                width: 400px;
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                position: absolute;
+                top: 35%;
+                left: 50%;
+                transform: translate(-50%, -50%); /* Căn giữa hoàn toàn */
+            }
+
+
+            .form-box h2 {
+                text-align: center;
+                color: #804d38;
+                margin-bottom: 15px;
+            }
+            .form-box h3 {
+                text-align: center;
+                margin-top: 50px;
+            }
+
+            .form-box label {
+                display: block;
+                margin-top: 10px;
+                font-weight: bold;
+                color: #804d38;
+            }
+
+            .form-box input, .form-box select {
+                width: 100%;
+                padding: 8px;
+                margin-top: 5px;
+                border: 1px solid #804d38;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+
+            .form-box select {
+                cursor: pointer;
+            }
+
+            .submit-btn {
+                width: 110px;
+                padding: 10px;
+                margin-top: 30px;
+                margin-right: 20px;
+                margin-left: 20px;
+                background: #ffffff;
+                color: #5A3A21;
+                border: solid #663726;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+
+            }
+
+            .submit-btn:hover {
+                background: #f4f4f4;
+            }
+            
+            
+             .submit-btn2 {
+                width: 110px;
+                padding: 10px;
+                margin-top: 30px;
+                margin-right: 20px;
+                margin-left: 20px;
+                background: #804d38;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+
+            }
+
+            .submit-btn2:hover {
+                background: #663726;
+            }
+            
+            
+            
+            .img {
+                border-style: solid;
+                display: flex;
+                justify-content: center;
+                height: 150px;
+            }
+            .form-box a{
+                width: 100px;
+                align-items: center;
+                justify-content: center;
+            }
+
+
+            footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: #5A3A21;
+                color: white;
+                padding: 20px;
+                text-align: center;
+            }
+
+
+
+
+        </style>
+    </head>
+    <body>
+
+        <div id="header"></div>
+        <script>
+            fetch("header.jsp")
+                    .then(response => response.text())
+                    .then(data => document.getElementById("header").innerHTML = data)
+                    .catch(error => console.error("Lỗi khi tải header:", error));
+        </script>
+
+        <!-- banner -->
+        <div class="banner">
+            CHIA SẺ TRANG WEB
+        </div>
+
+        <!-- Registration Form -->
+        <div class="form-container">
+            <div class="form-box">
+                <h2>Smember</h2>
+
+                <div class="img">
+                    <img src="data:image/png;base64,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" alt="logo"/>
+                </div>
+
+                <h3>Đăng nhập để tiếp tục</h3>
+
+               <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+    <button class="submit-btn" onclick="window.location.href='dangnhap.html'">Đăng nhập</button>
+    <button class="submit-btn2" onclick="window.location.href='dangky.html'">Đăng ký</button>
+</div>
+
+            </div>
+        </div>
+
+    </body>
+    <footer style="background: #5A3A21; color: white; padding: 20px; margin-top: 20px;">
+        &copy; 2025 Chia Sẻ Trang Web. All rights reserved.
+    </footer>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Giao diện từng danh mục</title>
+        <style>
+            /* Thiết lập kiểu chung cho toàn bộ trang */
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                margin: 0; /* Xóa khoảng cách lề */
+                background-color: #f4f4f4;
+            }
+            
+            .banner {   /*-----------------*/
+                background: linear-gradient(to bottom, #8B5E3C, #5A3A21);
+                color: white;
+                padding: 20px;
+                font-size: 24px;
+                font-weight: bold;
+                margin-top: 34px;
+            }
+            
+           
+            
+            
+            /* -------------------------------------------------------------------*/
+              .container {    /*-----------------*/
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+                margin-top: 60px; /* Tránh bị header che mất nội dung */
+
+            }
+            /* Nội dung chính */
+            .main-content {
+                background: white;
+                padding: 20px;
+                width: 85%;
+                border: 1.6px solid black;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng */
+                margin-top: 20px;
+            }
+            /* -------------------------------------------------------------------*/
+            /* Khu vực chứa các bảng */
+            .featured-section {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start; /* Đảm bảo bảng lớn không bị co lại */
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+            /* Bảng lớn */
+            .table-container {
+                width: 555px;
+                padding: 10px;
+                gap: 40px;
+                border: 1.6px solid white;
+                display: flex;
+                flex-direction: column; /* sắp xếp theo cột dọc */
+                justify-content: flex-start;
+                box-sizing: border-box; /* Đảm bảo kích thước không bị thay đổi bởi padding/border */
+            }
+            /* Bố cục của từng ô thông tin */
+            .grid-container {
+                width: 510px;
+                height: 225px;
+                border: 1.6px solid black;
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                grid-template-rows: auto auto auto; /* Chia 3 hàng */
+                gap: 10px;
+                padding: 10px;
+            }
+            /* -------------------------------------------------------------------*/
+            /* Phần chứa hình ảnh */
+            .left {
+                grid-row: span 3; /* Chiếm toàn bộ chiều cao */
+                border: 1.6px solid black;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden; /* Ẩn phần vượt ra ngoài */
+                width: 100%;
+                height: 100%;
+                max-width: 150px; /* Giới hạn chiều rộng */
+                max-height: 225px; /* Giới hạn chiều cao */
+            }
+            /* Hình ảnh trong ô */
+            .left img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* Giữ tỉ lệ ảnh */
+            }
+            /* -------------------------------------------------------------------*/
+            /* Các vùng nhập nội dung bên phải */
+            .right-top {
+                height: 40px;
+                margin-top: 10px;
+            }
+
+            .right-middle {
+                height: 10px;
+                margin-bottom: 10px;
+            }
+
+            .right-bottom {
+                height: 100px;
+                margin-bottom: 10px;
+            }
+            .right-top input, .right-middle input, .right-bottom input {
+                width: 100%;
+                border: none;
+                outline: none;
+            }
+            /* -------------------------------------------------------------------*/
+            /* Định dạng chung các Ô nhập */
+            .right-top, .right-middle, .right-bottom {
+                border: 2px solid black;
+                padding: 5px;
+                margin-right: 10px;
+                padding-left: 5px;
+                text-align: left;
+                display: flex;
+                align-items: flex-start;
+                word-wrap: break-word; /* Xuống dòng nếu dài */
+                white-space: normal;  /* Cho phép xuống dòng */
+                overflow: hidden;
+                overflow-wrap: break-word; /* Ngắt từ khi cần */
+                word-break: break-word; 
+            }
+            
+            /* Các thẻ <input> bên trong */
+            .right-top input, .right-middle input, .right-bottom input {
+                width: 100%;
+                border: none;
+                outline: none;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                white-space: normal;
+            }
+            
+          
+        </style>
+    </head>
+    <body>
+      
+             
+ <div id="header"></div>
+    <script>
+        fetch("header.jsp")
+            .then(response => response.text())
+            .then(data => document.getElementById("header").innerHTML = data)
+            .catch(error => console.error("Lỗi khi tải header:", error));
+    </script>
+    
+    
+        
+        
+
+        <!-- banner -->
+        <div class="banner">CHIA SẺ TRANG WEB</div>
+
+
+        
+        
+        
+        
+        <div class="container">
+            <div class="main-content">
+                <div class="featured-section">
+                    <!-- Bảng lớn 1 -->
+                    <div class="table-container">
+                         <!-- Các ô thông tin -->
+                        <div class="grid-container">
+                            <div class="left">
+                                
+                            </div>
+                            <div class="right-top" contenteditable="true"></div>
+                            <div class="right-middle" contenteditable="true"></div>
+                            <div class="right-bottom" contenteditable="true"></div>
+                        </div>
+                         <!-- Các ô thông tin -->
+                        <div class="grid-container">
+                            <div class="left">
+                                
+                            </div>
+                            <div class="right-top" contenteditable="true"></div>
+                            <div class="right-middle" contenteditable="true"></div>
+                            <div class="right-bottom" contenteditable="true"></div>
+                        </div>
+                         <!-- Các ô thông tin -->
+                        <div class="grid-container">
+                            <div class="left">
+                                
+                            </div>
+                            <div class="right-top" contenteditable="true"></div>
+                            <div class="right-middle" contenteditable="true"></div>
+                            <div class="right-bottom" contenteditable="true"></div>
+                        </div>
+                        <!-- Các ô thông tin -->
+                        <div class="grid-container">
+                            <div class="left">
+                            </div>
+                            <div class="right-top" contenteditable="true"></div>
+                            <div class="right-middle" contenteditable="true"></div>
+                            <div class="right-bottom" contenteditable="true"></div>
+                        </div>
+                    </div>
+
+                    <!-- Bảng lớn 2 -->
+                    <div class="table-container">
+                        <!-- Các ô thông tin -->
+                        <div class="grid-container">
+                            <div class="left">
+                            </div>
+                            <div class="right-top" contenteditable="true"></div>
+                            <div class="right-middle" contenteditable="true"></div>
+                            <div class="right-bottom" contenteditable="true"></div>
+                        </div>
+                        <!-- Các ô thông tin -->
+                        <div class="grid-container">
+                            <div class="left">
+                            </div>
+                            <div class="right-top" contenteditable="true"></div>
+                            <div class="right-middle" contenteditable="true"></div>
+                            <div class="right-bottom" contenteditable="true"></div>
+                        </div>
+                         <!-- Các ô thông tin -->
+                        <div class="grid-container">
+                            <div class="left">
+                            </div>
+                            <div class="right-top" contenteditable="true"></div>
+                            <div class="right-middle" contenteditable="true"></div>
+                            <div class="right-bottom" contenteditable="true"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>

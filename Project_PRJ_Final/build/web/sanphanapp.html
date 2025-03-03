@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CHIA SẺ TRANG WEB</title>
+        <style>
+            /* Thiết lập kiểu chung cho toàn bộ trang */
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0; /* Xóa khoảng cách lề */
+                padding: 0;
+            }
+            /* Thanh tiêu đề */
+            .header {
+                background: linear-gradient(to bottom, #8B5E3C, #5A3A21);
+                color: white;
+                padding: 20px;
+                font-size: 24px;
+                font-weight: bold;
+                text-align: center;
+            }
+            /* -------------------------------------------------------------------*/
+            /* Thanh điều hướng */
+            .navbar {
+                display: flex;
+                justify-content: center;
+                padding: 10px;
+                background: white;
+                border-bottom: 1px solid #ccc;
+            }
+            /* Các nút bên trong(<button>) */
+            .navbar button {
+                margin: 5px;
+                padding: 8px 15px;
+                border: 1px solid #000;
+                background: white;
+                cursor: pointer; /* Đổi con trỏ khi di chuột vào */
+            }   
+            /* -------------------------------------------------------------------*/
+            /* Thanh nhập liệu dưới Navbar */
+            .navbar-after {
+                width: 53%;
+                margin-left: 0;
+                display: flex;
+                align-items: center;
+                padding: 5px;
+                gap: 5px;
+                margin: 10px auto;
+                margin-top: 20px; /* Cách trên 10px */
+                margin-bottom: 40px; /* Cách dưới 10px */
+                border-bottom: 1px solid #a97c6c; /* Thêm viền dưới */
+                padding-bottom: 3px; /* Điều chỉnh khoảng cách nếu cần */
+            }
+            /* -------------------------------------------------------------------*/
+            /*3 Ô nhập liệu dưới tiêu đề */
+            .input-left {
+                width: 35px;
+                height: 35px;
+                border: 1.6px solid black;
+            }
+
+            .input-middle {
+                width: 90px;
+                height: 35px;
+                border: 1.6px solid black;
+            }
+
+            .input-right {
+                width: 90px;
+                height: 35px;
+                border: 1.6px solid black;
+            }
+            /* -------------------------------------------------------------------*/
+            /* Vùng chứa nội dung chính */
+            .container {
+                width: 53%;
+                margin: 10px auto;
+                border: 1.6px solid black;
+                padding: 50px;
+                min-height: 600px;
+            }
+            /* Bố cục chính */
+            .main {
+                display: flex;
+                align-items: flex-start;
+            }
+            /* -------------------------------------------------------------------*/
+            /* Ô nhập liệu trên cùng */
+            .top-input {
+                width: 60%;
+                height: 40px;
+                margin-bottom: 25px;
+                border: 1.6px solid black;
+            }
+            /* -------------------------------------------------------------------*/
+            /* Khu vực Logo */
+            .logo-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            /* Ô chứa logo */
+            .logo {
+                width: 90px;
+                height: 90px;
+                border: 1.6px solid black;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 15px;
+            }
+            /* -------------------------------------------------------------------*/
+            /* Nút tải xuống */
+            .download {
+                background: green;
+                color: white;
+                width: 90px;
+                padding: 5px 10px;
+                border: none;
+                display: block;
+                margin-top: 5px;
+            }
+            /* -------------------------------------------------------------------*/
+            /* Khu vực nhập liệu bên phải logo */
+            .form {
+                flex-grow: 1; /* Cho phép phần tử mở rộng để lấp đầy không gian còn lại */
+                display: flex;
+                flex-direction: column; /* sắp xếp theo cột dọc */
+                align-items: flex-start;
+                margin-left: 40px;
+                margin-top: -5px;
+            }
+            .form input {
+                width: 25%;
+                margin: 5px 0;
+                height: 15px;
+                border: 1.6px solid black;
+            }
+            /* -------------------------------------------------------------------*/
+            /* Khu vực các nút nhập liệu bên dưới */
+            .buttons {
+                display: flex;
+                margin-top: 10px;
+            }
+            .buttons input {
+                margin-right: 5px;
+                width: 67px;
+                height: 14px;
+                border: 1.6px solid black;
+                margin-top: 20px;
+            }
+            /* -------------------------------------------------------------------*/
+            /* Ô nội dung chỉnh sửa */
+            .content {
+                margin-top: 5px;
+                border: 1px solid black;
+                border: 1.6px solid black;
+                min-height: 300px;
+            }
+            /* -------------------------------------------------------------------*/
+            /* Thanh kéo */
+            .slider {
+                width: 100%;
+                margin: 10px 0;
+                appearance: none;   
+                height: 1px;
+                background: #a97c6c;
+                outline: none;
+            }
+            /* Nút kéo */
+            .slider::-webkit-slider-thumb {
+                appearance: none; /* Loại bỏ kiểu mặc định của trình duyệt */
+                width: 73px; 
+                height: 2.5px;  
+                background: #a97c6c; 
+                cursor: pointer; /* Biến con trỏ thành bàn tay khi di chuột qua */
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Thanh điều hướng chính -->
+        <div class="navbar">
+            <button>LOGO</button>
+            <button>Window & Mac</button>
+            <button>Android & IOS</button>
+            <button>Account</button>
+            <a href="dangnhap.html">
+                <button>Đăng nhập</button>
+            </a>
+            <button>Giỏ hàng</button>
+        </div>
+
+        <div class="header">CHIA SẺ TRANG WEB</div>
+        
+         <!-- 3 ô nhập liệu dưới tiêu đề -->
+        <div class="navbar-after">
+            <input type="text" class="input-left">
+            <button>&gt;</button>
+            <input type="text" class="input-middle">
+            <button>&gt;</button>
+            <input type="text" class="input-right">
+        </div>
+        
+        <!-- Phần nội dung chính -->
+        <div class="container">
+            <input type="text" class="top-input"> <!-- Ô nhập liệu lớn trên cùng -->
+            <div class="main">
+                
+                <!-- Khu vực Logo -->
+                <div class="logo-section">
+                    <div class="logo">Logo</div>
+                    <button class="download">download</button>
+                </div>
+                
+                <!-- Khu vực nhập bên phải logo -->
+                <div class="form">
+                    <input type="text">
+                    <input type="text">
+                    <input type="text">
+                    <input type="text">
+                    <input type="text">
+                </div>
+            </div>
+            
+            <!-- Các nút nhập liệu phía dưới -->
+            <div class="buttons">
+                <input type="text">
+                <input type="text">
+                <input type="text">
+            </div>
+            
+            <!-- Thanh kéo -->
+            <input type="range" class="slider" min="0" max="100" value="50">
+            <div class="content" contenteditable="true"></div>
+        </div>
+    </body>
+</html>
